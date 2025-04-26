@@ -1,303 +1,113 @@
-import { Button, Col, Divider, Row, Typography } from "antd";
-import * as React from "react";
-const { Text, Title, Paragraph } = Typography;
-import { SharedLayout } from "@app/components";
-import { useSharedQuery } from "@app/graphql";
-import { NextPage } from "next";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
 
-// Convenience helper
-const Li = ({ children, ...props }: any) => (
-  <li {...props}>
-    <Typography>{children}</Typography>
-  </li>
-);
-
-const Home: NextPage = () => {
-  const query = useSharedQuery();
+export default function Home() {
   return (
-    <SharedLayout title="" query={query}>
-      <Row justify="space-between" gutter={32}>
-        <Col xs={24} sm={16}>
-          <Title data-cy="homepage-header">
-            Welcome to the PostGraphile starter
-          </Title>
-          <Paragraph>
-            This project can serve as a basis for your own project. We&apos;ve
-            added many features that most projects require, but you&apos;re free
-            to remove them or replace them with whatever you need.
-          </Paragraph>
+    <main className="min-h-screen bg-gradient-to-br from-sky-50 to-white p-6 md:p-12">
+      <section className="text-center max-w-3xl mx-auto">
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold text-sky-900 mb-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Prépare ton SAT ou ACT avec un coach expert 🇫🇷📘
+        </motion.h1>
+        <p className="text-lg md:text-xl text-gray-700 mb-8">
+          Une méthode unique pensée pour les élèves français qui visent un bachelor scientifique aux États-Unis
+        </p>
+        <Button className="text-lg px-6 py-3 rounded-2xl">Réserver un appel gratuit</Button>
+      </section>
 
-          <Paragraph>
-            <Text mark>
-              Please read the next few sections before continuing.
-            </Text>{" "}
-          </Paragraph>
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        <Card className="shadow-xl rounded-2xl">
+          <CardContent className="p-6">
+            <h3 className="text-xl font-semibold mb-2">Méthode 100% personnalisée</h3>
+            <p className="text-gray-600">
+              Diagnostic initial, plan de travail adapté, progression en temps réel. On s'adapte à ton profil et ton rythme !
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="shadow-xl rounded-2xl">
+          <CardContent className="p-6">
+            <h3 className="text-xl font-semibold mb-2">Focus Sciences & Maths</h3>
+            <p className="text-gray-600">
+              Entraînement spécifique pour les élèves visant les STEM : raisonnement scientifique, logique, data analysis, etc.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="shadow-xl rounded-2xl">
+          <CardContent className="p-6">
+            <h3 className="text-xl font-semibold mb-2">Culture test & mindset</h3>
+            <p className="text-gray-600">
+              Familiarise-toi avec les codes anglo-saxons, développe ton aisance mentale et ta gestion du temps le jour J !
+            </p>
+          </CardContent>
+        </Card>
+      </section>
 
-          <Title level={4}>Next.js and page load delays: dev only</Title>
-          <Paragraph>
-            We use Next.js to serve the React app. This gives us server-side
-            rendering, routing, bundle splitting, hot reloading, and much more.
-            However, in development when you visit a page it must first be
-            loaded from the file system and transpiled and bundled by the
-            server, served to the client, and then executed. This means there
-            can be a small delay when loading a web page for the first time in
-            development. In production, this delay should be vastly smaller, and
-            can be eliminated with pre-fetching. You can read more about this in
-            the{" "}
-            <a href="https://nextjs.org/docs#prefetching-pages">Next.js docs</a>
-          </Paragraph>
+      <section className="mt-20 max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6 text-sky-800 text-center">À propos</h2>
+        <p className="text-gray-700 text-lg leading-relaxed text-center">
+          Je suis un tuteur passionné par l’enseignement et les cultures éducatives internationales. J’aide les élèves français à réussir leur SAT ou ACT grâce à une approche structurée, bienveillante et 100% adaptée au système anglo-saxon. Mon objectif : t’amener à intégrer une université américaine de premier plan en sciences !
+        </p>
+      </section>
 
-          <Title level={4}>Page hangs: development only</Title>
-          <Paragraph>
-            If the page hangs this is likely because the Next server was
-            restarted. Please reload the page.
-          </Paragraph>
+      <section className="mt-20 max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6 text-sky-800 text-center">Témoignages</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card className="shadow-lg">
+            <CardContent className="p-4">
+              <p className="text-gray-700 italic">“Grâce à cette préparation, j’ai progressé de 180 points en 6 semaines. La méthode est claire, rigoureuse et motivante.”</p>
+              <p className="mt-2 font-semibold">— Emma, admise à UC Berkeley</p>
+            </CardContent>
+          </Card>
+          <Card className="shadow-lg">
+            <CardContent className="p-4">
+              <p className="text-gray-700 italic">“J’ai pu comprendre les pièges du test ACT et apprendre à gérer mon stress. Les sessions sont dynamiques et bien construites.”</p>
+              <p className="mt-2 font-semibold">— Théo, futur étudiant en ingénierie</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
 
-          <Title level={4}>Emails</Title>
-          <Paragraph>
-            <strong>
-              In development we don&apos;t send any emails to real email
-              addresses
-            </strong>
-            , instead all emails are sent to{" "}
-            <a href="http://ethereal.email">ethereal.email</a> where you can
-            browse them. Keep an eye on the terminal; when an email is triggered
-            the server will log a URL to view the email.
-          </Paragraph>
+      <section className="mt-20 max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-6 text-sky-800">Vidéo de présentation</h2>
+        <div className="aspect-w-16 aspect-h-9">
+          <iframe
+            className="w-full rounded-xl shadow-md"
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+            title="Présentation de la méthode SAT ACT"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </section>
 
-          <Title level={4}>
-            <a href="/graphiql">
-              Graph<em>i</em>QL
-            </a>
-          </Title>
-          <Paragraph>
-            You can browse the GraphQL API and even issue GraphQL queries using
-            the built in Graph<em>i</em>QL interface located at{" "}
-            <a href="/graphiql">
-              <code>/graphiql</code>
-            </a>
-            .
-          </Paragraph>
+      <section className="mt-20 max-w-xl mx-auto">
+        <h2 className="text-3xl font-bold mb-4 text-sky-800 text-center">Contacte-moi</h2>
+        <form className="space-y-4">
+          <Input placeholder="Ton prénom" />
+          <Input placeholder="Ton e-mail" type="email" />
+          <Textarea placeholder="Parle-moi de ton projet d'études 🎓" rows={4} />
+          <Button className="w-full">Envoyer le message</Button>
+        </form>
+      </section>
 
-          <Title level={4}>
-            This page:{" "}
-            <a href="https://github.com/graphile/starter/blob/main/@app/client/src/pages/index.tsx">
-              <code>@app/client/src/pages/index.tsx</code>
-            </a>
-          </Title>
-          <Paragraph>
-            If you edit this file and save, the page in the browser should
-            automatically update.
-          </Paragraph>
-
-          <Title level={4}>
-            The server:{" "}
-            <a href="https://github.com/graphile/starter/blob/main/@app/server/src/index.ts">
-              <code>@app/server/src/index.ts</code>
-            </a>
-          </Title>
-          <Paragraph>
-            This entry point creates an Express.js server and installs a number
-            of middlewares, including PostGraphile.
-          </Paragraph>
-
-          <Title level={4}>Initial migration</Title>
-          <Paragraph>
-            We use <code>graphile-migrate</code> in this project to manage
-            database migrations; this allows you to change the database very
-            rapidly by just editing the current migration file:{" "}
-            <code>migrations/current.sql</code>. This file should be written in
-            an idempotent manner so that it can be ran repeatedly without
-            causing issues.
-          </Paragraph>
-          <Paragraph>
-            We&apos;ve committed the first migration for you (which builds the
-            user system), but should you wish to customize this user system the
-            easiest way is to run <code>yarn db uncommit</code> which will undo
-            this initial migration and move its content back to current.sql for
-            you to modify. Please see{" "}
-            <a href="https://github.com/graphile/migrate/blob/main/README.md">
-              the graphile-migrate documentation
-            </a>
-            .
-          </Paragraph>
-
-          <Title level={4}>isAdmin</Title>
-          <Paragraph>
-            The <code>isAdmin</code> flag doesn&apos;t do anything in this
-            starter, but you can use it in your own applications should you need
-            it.
-          </Paragraph>
-
-          <Title level={4}>What now?</Title>
-          <Paragraph>
-            To get started, click &ldquo;Sign in&rdquo; at the top right, then
-            choose &ldquo;Create One&rdquo; to create a new account.
-          </Paragraph>
-          <Paragraph>
-            When you&apos;re happy, you can add database changes to{" "}
-            <code>current.sql</code> and see them reflected in the GraphiQL
-            interface a <a href="/graphiql">/graphiql</a>.
-          </Paragraph>
-
-          <Divider />
-
-          <Title level={3}>Further notes</Title>
-
-          <Paragraph>
-            <Text mark>You can read this later.</Text> The important things were
-            above; below is additional information worth a read when you&apos;re
-            done experimenting.
-          </Paragraph>
-
-          <Title level={4}>Making it yours</Title>
-          <Paragraph>
-            This project isn&apos;t intended to be <code>git clone</code>
-            &apos;d; instead you should start a new git repository with the code
-            from the latest release:
-          </Paragraph>
-          <ol>
-            <Li>
-              Download and extract a zip of the{" "}
-              <a href="https://github.com/graphile/starter/releases">
-                latest release from GitHub
-              </a>
-            </Li>
-            <Li>
-              In that folder run:
-              <ul>
-                <Li>
-                  <code>git init</code>
-                </Li>
-                <Li>
-                  <code>git add .</code>
-                </Li>
-                <Li>
-                  <code>
-                    git commit -m &quot;PostGraphile starter base&quot;
-                  </code>
-                </Li>
-              </ul>
-            </Li>
-            <Li>
-              Change the project name in <code>package.json</code>
-            </Li>
-            <Li>
-              Change the project settings in{" "}
-              <code>@app/config/src/index.ts</code>
-            </Li>
-            <Li>Replace the README.md file</Li>
-            <Li>Commit as you usually would</Li>
-          </ol>
-          <Paragraph>
-            We also advise addressing the <code>TODO</code> items in the
-            codebase, particularly the one in{" "}
-            <code>@app/db/scripts/wipe-if-demo</code>
-          </Paragraph>
-
-          <Title level={4}>Production readiness</Title>
-          <Paragraph>
-            Remember that disabling GraphiQL does not prevent people from
-            issuing arbitrary GraphQL queries against your API. Before you ship,
-            be sure to{" "}
-            <a href="https://www.graphile.org/postgraphile/production/">
-              read the Production Considerations
-            </a>{" "}
-            in the PostGraphile docs. You may consider{" "}
-            <a href="https://www.graphile.org/postgraphile/pricing/">
-              going Pro
-            </a>{" "}
-            as one option for protecting your PostGraphile API; another is to
-            use &ldquo;stored operations&rdquo; (a.k.a. &ldquo;persisted
-            queries&rdquo;).
-          </Paragraph>
-
-          <Title level={4}>Realtime</Title>
-          <Paragraph>
-            We&apos;ve configured PostGraphile with{" "}
-            <Text code>@graphile/pg-pubsub</Text> to enable realtime events from
-            the DB; and Apollo is configured to consume them. For example, if
-            you register with email/password you may notice the red dot at the
-            top right indicating that you need to verify your email. If you
-            verify your email in another tab (or even another browser) you
-            should notice that this dot disappears. Realtime ✨🌈
-          </Paragraph>
-
-          <Title level={4}>Server-side rendering (SSR)</Title>
-          <Paragraph>
-            If you disable JS and reload the page you should see the content is
-            still displayed (this &ldquo;server-side rendering&rdquo; is
-            important to ensuring that your users have the best low-latency
-            experience of your website, and that the majority of search engines
-            can index its content).
-          </Paragraph>
-
-          <Title level={4}>Duplicate emails</Title>
-          <Paragraph>
-            To prevent people blocking legitimate users from registering, we
-            only prevent the same email address being used multiple times when
-            it has been verified by someone. It&apos;s up to your application to
-            turn features off/etc when the user does not have any verified email
-            addresses (should you desire this).
-          </Paragraph>
-
-          <Title level={4}>Email in production</Title>
-          <Paragraph>
-            We&apos;ve configured the project to use Amazon SES to send emails
-            in production (you will need to create the relevant resources and
-            provide the relevant secrets to use this); however it can easily be
-            reconfigured to use your email transport service of choice.
-          </Paragraph>
-
-          <Title level={4}>Validation</Title>
-          <Paragraph>
-            We use{" "}
-            <a href="https://ant.design/components/form/">AntD&apos;s forms</a>,
-            so validation is provided via these. We&apos;ve shown how to connect
-            server-side errors into the form validation, for example try
-            registering a new account using the email address of an account{" "}
-            <strong>that has already been verified</strong>.
-          </Paragraph>
-
-          <Title level={4}>
-            One-time clone: no such thing as breaking changes
-          </Title>
-          <Paragraph>
-            It&apos;s expected that you&apos;ll do a one-time clone of this
-            project to base your project off, and that you will not keep your
-            project up to date with this one. As such, we can make any changes
-            we like to this project without breaking your project.
-          </Paragraph>
-        </Col>
-        <Col xs={24} sm={8}>
-          <Title level={4}>PostGraphile relies on your support</Title>
-          <Paragraph strong>A message from Benjie</Paragraph>
-          <Paragraph>
-            I really hope that this project wows you 😍 and saves you huge
-            amounts of time. I&apos;ve certainly poured a lot of time into it!
-          </Paragraph>
-          <Paragraph>
-            Without support from the community Jem and I could not keep building
-            and advancing these open source projects under the hugely flexible
-            MIT license. Please{" "}
-            <a href="https://graphile.org/sponsor">
-              join these amazing people in sponsoring PostGraphile
-            </a>{" "}
-            and related projects.
-          </Paragraph>
-          <Paragraph>
-            Every contribution helps us to spend more time on open source.
-          </Paragraph>
-          <Paragraph>
-            <Button type="primary" block href="https://graphile.org/sponsor">
-              Sponsor Graphile Today
-            </Button>
-          </Paragraph>
-          <Paragraph>Thank you! 🙏</Paragraph>
-        </Col>
-      </Row>
-    </SharedLayout>
+      <section className="mt-20 max-w-xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-4 text-sky-800">Réserver une séance</h2>
+        <p className="text-gray-600 mb-4">Choisis ton créneau et réserve en quelques clics !</p>
+        <iframe
+          src="https://calendly.com/votre-lien"
+          className="w-full h-[600px] rounded-xl shadow"
+          frameBorder="0"
+        ></iframe>
+      </section>
+    </main>
   );
-};
+}
 
-export default Home;
